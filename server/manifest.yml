@@ -1,11 +1,11 @@
   applications:
   - name: bestcars
     routes:
-      - route: $HOST.$DOMAIN
+      - route: best-cars-8560.eu-gb.cf.appdomain.cloud
     memory: 128M
     buildpack: python_buildpack
   - name: bestcars-nginx
     routes:
-      - route: $HOST.$DOMAIN/static
+      - route: best-cars-8560.eu-gb.cf.appdomain.cloud/static
     memory: 128M
     buildpack: staticfile_buildpack
