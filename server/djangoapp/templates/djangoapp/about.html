@@ -1,10 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'djangoapp/base.html' %}
 
 {% block content %}
 <div class="container">
-    <h5>
+    <h3>About us</h3>
+    <p>
         Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
-    </h5>
+    </p>
+    <br>
+
+    <h5>Our History</h5>
+    <div class="row text-left">
+        <div class="col-md">
+            <p>{% lorem 2 b %}</p>
+        </div>
+        <div class="col-sm">
+            <img class="img-fluid" alt="Responsive image" src="https://marvel-b1-cdn.bc0a.com/f00000000200059/www.grundy.com/wp-content/uploads/Car-Dealers-Top-Panel.jpg" />
+        </div>
+    </div>
+    <br>
+    <h5>Our Future</h5>
+    <div class="row text-left">
+        <div class="col-md">
+            <p>{% lorem 2 b %}</p>
+        </div>
+        <div class="col-sm">
+            <img class="img-fluid" alt="Responsive image" src="https://cdn.motor1.com/images/mgl/WP31r/s3/autonation-ceo-tesla-delivery-hell-issue-could-be-avoided-with-dealerships.jpg" />
+        </div>
+    </div>
 </div>
 {% endblock  %}
 

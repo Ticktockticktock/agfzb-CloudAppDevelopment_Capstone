@@ -22,13 +22,9 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Best Cars</a>
-                <ul class= "nav navbar-nav navbar-center">
-                    <li>
-                        <a class="btn btn-link" href="about">About us</a>
-                        <a class="btn btn-link" href="contact">Contact us</a>
-                    </li>
-                </ul>
+                <a class="navbar-brand" href="djangoapp">Best Cars</a>
+                <a class="btn btn-link" href="about">About us</a>
+                <a class="btn btn-link" href="contact">Contact us</a>
             </div>
             {% comment %} <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
@@ -52,11 +48,11 @@
             </ul> {% endcomment %}
         </div>
     </nav>
+    <br>
 
     {% block content %}
     
     {% endblock  %}
 
     </body>
-
 </html>
