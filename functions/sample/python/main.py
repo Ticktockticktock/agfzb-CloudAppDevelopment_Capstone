@@ -7,13 +7,13 @@
 # @return The output of this action, which must be a JSON object.
 #
 #
+import json
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
 
-
 def main(dict):
-    databaseName = "dealerships"
+    databaseName = "reviews"
 
     try:
         client = Cloudant.iam(
@@ -30,3 +30,11 @@ def main(dict):
         return {"error": err}
 
     return {"dbs": client.all_dbs()}
+
+
+with open('functions/.creds-sample.json') as d:
+    dictData = json.load(d)
+    
+main(dictData)
+
+

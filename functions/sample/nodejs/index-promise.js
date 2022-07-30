@@ -2,6 +2,7 @@
  * Get all dealerships
  */
 
+const fs = require('fs');
 const { CloudantV1 } = require('@ibm-cloud/cloudant');
 const { IamAuthenticator } = require('ibm-cloud-sdk-core');
 
@@ -64,3 +65,10 @@ function getDbs(cloudant) {
              });
          })
  }
+
+
+let rawdata = fs.readFileSync('../../.creds-sample.json');
+let params = JSON.parse(rawdata);
+
+main(params)
+    .then((res) => {console.log(res)})

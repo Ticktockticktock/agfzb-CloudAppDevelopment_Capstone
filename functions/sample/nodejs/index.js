@@ -2,6 +2,7 @@
  * Get all databases
  */
 
+const fs = require('fs');
 const { CloudantV1 } = require('@ibm-cloud/cloudant');
 const { IamAuthenticator } = require('ibm-cloud-sdk-core');
 
@@ -25,3 +26,8 @@ function getDbs(cloudant) {
     }).catch((err) => { console.log(err); });
 }
 
+
+let rawdata = fs.readFileSync('../../.creds-sample.json');
+let params = JSON.parse(rawdata);
+
+main(params)
