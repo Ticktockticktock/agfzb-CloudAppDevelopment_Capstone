@@ -39,7 +39,7 @@ def get_request(url, **kwargs):
 def post_request(url, json_payload, **kwargs):
     response = requests.post(url, params=kwargs, json=json_payload)
 
-    print(response)
+    # print(response)
     
     json_data = json.loads(response.text)
     return json_data
@@ -83,13 +83,11 @@ def get_dealer_by_id_from_cf(url, dealerId):
     if json_result.get("result"):
         # Get the row list in JSON as dealers
         dealers = json_result["result"]
-        # For each dealer object
+
         for dealer in dealers:
             dealer_obj = DealerReview(dealership=dealer["dealership"], name=dealer["name"], 
                         purchase=dealer["purchase"], review=dealer["review"])
 
-            if "id" in dealer:
-                dealer_obj.id = dealer["id"]
             if "purchase_date" in dealer:
                 dealer_obj.purchase_date = dealer["purchase_date"]
             if "car_make" in dealer:
@@ -100,13 +98,14 @@ def get_dealer_by_id_from_cf(url, dealerId):
                 dealer_obj.car_year = dealer["car_year"]
 
             try:
+                # print("dealer being analized: {}".format(dealer_obj.name))
                 temp_sent = analyze_review_sentiments(dealer_obj.review)
                 dealer_obj.sentiment = temp_sent
             except:
                 dealer_obj.sentiment = "Neutral"
 
             results.append(dealer_obj)
-
+        
     return results
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
@@ -128,7 +127,7 @@ def analyze_review_sentiments(dealerreview):
                                         targets=[dealerreview]))).get_result() 
 
     label=json.dumps(response, indent=2) 
-
+    # print("anlysys response: {}".format(label))
     label = response['sentiment']['document']['label'] 
 
     return(label) 

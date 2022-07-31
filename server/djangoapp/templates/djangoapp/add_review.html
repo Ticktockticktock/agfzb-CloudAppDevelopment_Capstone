@@ -1,16 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+{% extends 'djangoapp/base.html' %}
 
-</head>
-    <body>
-    <!--Add review form here -->
-    </body>
-</html>
+{% block content %}
+
+<div class="container">
+    <h3>Write a review about {{ dealer.full_name }}</h3>
+
+    <form action="{% url 'djangoapp:add_review' dealer.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <div class="mb-3">
+                <label for="content"><b>Review</b></label>
+                <textarea class="form-control" id="content" name="content" rows="2" style="width: 500px" required></textarea>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                <label for="purchasecheck"><b>Did you purchased in this dealership?</b></label>
+                <p>If you did purchase the car in this dealership, please fill the details below: </p>
+            </div>
+
+            <div class="mb-3">
+                <label for="Select car"><b>Select your Car</b></label>
+                <select name="car" id="car" class="form-select" required>
+                    {% for car in cars %}
+                        <option selected value={{car.id}}>{{car.carMake}}: {{car.name}} - {{ car.year}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="purchasedate"><b>Purchased Date:</b></label>
+                <input class="date-own form-control" style="width: 500px;" type="text" name="purchasedate" id="purchasedate">
+            </div>
+        
+
+            {% if message %}
+                <div class="alert alert-warning"> 
+                    {{ message }}
+                </div>
+            {% endif %}
+            
+
+            <div>
+                <button class="btn btn-primary" type="submit">Sign up</button> 
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock  %}
