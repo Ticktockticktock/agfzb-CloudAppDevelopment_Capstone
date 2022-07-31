@@ -48,6 +48,7 @@ def login_request(request):
     else:
         return render(request, 'djangoapp/user_login.html', context)
 
+
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
     logout(request)
@@ -142,7 +143,7 @@ def add_review(request, dealer_id):
             review["dealership"] = int(dealer_id)
             review["review"] = request.POST["content"]
             review["purchase"] = False
-            
+
             if request.POST.get("purchasecheck") and request.POST["purchasecheck"] == 'on':
                 review["purchase"] = True
                 review["purchase_date"] = request.POST["purchasedate"]
