@@ -22,7 +22,7 @@
 
             <div class="mb-3">
                 <label for="Select car"><b>Select your Car</b></label>
-                <select name="car" id="car" class="form-select" required>
+                <select name="car" id="car" class="form-select">
                     {% for car in cars %}
                         <option selected value={{car.id}}>{{car.carMake}}: {{car.name}} - {{ car.year}}</option>
                     {% endfor %}
@@ -31,7 +31,7 @@
 
             <div class="mb-3">
                 <label for="purchasedate"><b>Purchased Date:</b></label>
-                <input class="date-own form-control" style="width: 500px;" type="text" name="purchasedate" id="purchasedate">
+                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
             </div>
         
 
@@ -43,7 +43,7 @@
             
 
             <div>
-                <button class="btn btn-primary" type="submit">Sign up</button> 
+                <button class="btn btn-primary" type="submit">Submit</button> 
             </div>
         </div>
     </form>

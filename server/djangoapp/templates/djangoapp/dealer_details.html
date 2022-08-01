@@ -6,45 +6,38 @@
             <div class="container">
                 <a href="{% url 'djangoapp:add_review' dealer_id %}">Add review</a>
             </div>
-            
+        {% else %}
             <div class="container">
-                <div class="card-columns">
-                    {% for review in dealer_details %}
-                        <div class="card">
-                            {% if review.sentiment == "positive" %}
-                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/positive.png">
-                            {% elif review.sentiment == "negative" %}
-                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/negative.png">
-                            {% else %}
-                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/neutral.png">
-                            {% endif %}
-
-                            <div class="card-body">
-                                <!-- Display make and model if available-->
-                                {% if  review.car_make and review.car_model %} 
-                                    <h3 class="card-title">{{ review.car_make }} {{review.car_model }}</h3> 
-                                {% endif %}
-                                <!-- Display model year if available-->
-                                {% if  review.car_year %}
-                                    <h5 class="card-subtitle mb-2 text-muted">{{ review.car_year }}</h5>
-                                {% endif %}
-                                <p class="card-text">{{ review.review }} </p>
-                                </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                <b>Please login to add a review</b>
             </div>
         {% endif %}
+            
+        <div class="container">
+            <div class="card-columns">
+                {% for review in dealer_details %}
+                    <div class="card">
+                        {% if review.sentiment == "positive" %}
+                            <img class="card-img-left" src="{{MEDIA_URL}}/emoji/positive.png">
+                        {% elif review.sentiment == "negative" %}
+                            <img class="card-img-left" src="{{MEDIA_URL}}/emoji/negative.png">
+                        {% else %}
+                            <img class="card-img-left" src="{{MEDIA_URL}}/emoji/neutral.png">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <!-- Display make and model if available-->
+                            {% if  review.car_make and review.car_model %} 
+                                <h3 class="card-title">{{ review.car_make }} {{review.car_model }}</h3> 
+                            {% endif %}
+                            <!-- Display model year if available-->
+                            {% if  review.car_year %}
+                                <h5 class="card-subtitle mb-2 text-muted">{{ review.car_year }}</h5>
+                            {% endif %}
+                            <p class="card-text">{{ review.review }} </p>
+                            </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock  %}
-
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dealership Review</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
--->
