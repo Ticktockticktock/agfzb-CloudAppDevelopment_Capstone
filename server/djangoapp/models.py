@@ -25,12 +25,12 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 class CarModel(models.Model):
-    id = models.IntegerField(default=1,primary_key=True) 
+    id = models.AutoField(primary_key=True) 
     carMake = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(null=False, max_length=80)
 
-    ID_CHOICES = [(r,r) for r in range(1, 51)]
-    dealerID = models.IntegerField(('dealer id'), choices= ID_CHOICES, default= 1)
+    DEALER_ID_CHOICES = [(r,r) for r in range(1, 51)]
+    dealerID = models.IntegerField(('dealer id'), choices= DEALER_ID_CHOICES, default= 1)
     
     SEDAN = 'sedan'
     SUV = 'suv'
